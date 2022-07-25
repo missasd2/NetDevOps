@@ -1,0 +1,40 @@
+#
+sysname CE1
+#
+aaa
+ local-user python password irreversible-cipher $1c$0/O8/C&SD"$|K{x6$J(2Ya{+\Y:`"xWrG%[8v3US'1GpE9BZ>b)$
+ local-user python service-type ssh
+ local-user python user-group manage-ug
+ #
+ authentication-scheme default
+ #
+ authorization-scheme default
+ #
+ accounting-scheme default
+ #
+ domain default
+ #
+ domain default_admin
+#
+stelnet server enable
+ssh user python
+ssh user python authentication-type password
+ssh user python service-type stelnet
+ssh authorization-type default aaa
+#
+ssh server cipher aes256_gcm aes128_gcm aes256_ctr aes192_ctr aes128_ctr aes256_cbc aes128_cbc 3des_cbc
+#
+ssh server dh-exchange min-len 1024
+#
+ssh client cipher aes256_gcm aes128_gcm aes256_ctr aes192_ctr aes128_ctr aes256_cbc aes128_cbc 3des_cbc
+#
+user-interface con 0
+#
+user-interface vty 0 4
+ authentication-mode aaa
+ user privilege level 3
+ protocol inbound ssh
+#
+vm-manager
+#
+return
