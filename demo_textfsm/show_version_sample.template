@@ -1,0 +1,11 @@
+Value version (\d+.\d+\(\d+\))
+Value image (.+)
+Value dev_name (\S+)
+Value model (\w+)
+Value series (\w+)
+
+Start
+  ^\s+NXOS: version\s+${version}
+  ^\s+cisco\s+${series}\s+${model} Chassis
+  ^\s+NXOS image file is: bootflash:///${image}
+  ^\s+Device name: ${dev_name} -> Record
